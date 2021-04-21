@@ -17,6 +17,29 @@ allocation = [
 need = []
 
 
+def is_safe():
+    work = available
+    finish = [False for _ in range(0, len(max_demand))]
+
+    # Safety algorithm
+    for k in range(0, len(max_demand)):
+        for i in range(0, len(max_demand)):
+
+            if finish[i] is False and need[i] <= work:
+                temp = []
+                for work_, alloc_ in zip(work, allocation[i]):
+                    temp.append(work_ + alloc_)
+                work = temp
+                finish[i] = True
+
+    # Check if all finished
+    for finished in finish:
+        if not finished:
+            return False  # unsafe
+
+    return True  # safe
+
+
 # Resource-Request Algorithm
 def res_request(i, request):
     # code here Bahaa
