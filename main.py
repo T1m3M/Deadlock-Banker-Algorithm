@@ -15,6 +15,7 @@ allocation = [
     [0, 0, 2]   # p4
 ]
 need = []
+request = []
 
 
 def is_safe():
@@ -43,7 +44,36 @@ def is_safe():
 # Resource-Request Algorithm
 def res_request(i, request):
     # code here Bahaa
-    return
+    for j in range(3):
+        
+        if request[j] > need[i][j] :
+            print("-------------------------------------------------------------------")
+            print("raise error condition, since process has exceeded its maximum claim")
+            print("-------------------------------------------------------------------")
+            return False
+
+    for j in range(3):
+        if request[j] > available[j]:
+            print("----------------------------------------------------------")
+            print("p"+ str(i) +" must wait, since resources are not available")
+            print("----------------------------------------------------------")
+            return False
+
+    for j in range(3):
+        available[j]= available[j]-request[j]
+        need[i][j] = need[i][j]-request[j]
+        allocation[i][j] = allocation[i][j]+ request[j]
+
+    if is_safe() :
+         print("Successful")
+    else:
+        print("Unsuccessful")
+        # The old resource-allocation state is restored.
+        for j in range(3):
+            available[j] = available[j] + request[j]
+            need[i][j] = need[i][j] + request[j]
+            allocation[i][j] = allocation[i][j] - request[j]
+
 
 
 # Resource release
