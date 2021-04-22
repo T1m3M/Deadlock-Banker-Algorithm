@@ -19,7 +19,7 @@ need = []
 
 def is_safe():
     work = available
-    finish = [False for _ in range(0, len(max_demand))] #**#
+    finish = [False for _ in range(0, len(max_demand))]
 
     # Safety algorithm
     for k in range(0, len(max_demand)):
@@ -40,9 +40,8 @@ def is_safe():
     return True  # safe
 
 
-# Resource-Request Algorithm
+# Resource-Request Algorithm (Bahaa)
 def res_request(i, request):
-    # code here Bahaa
     for j in range(3):
         
         if request[j] > need[i][j]:
@@ -74,19 +73,15 @@ def res_request(i, request):
             allocation[i][j] = allocation[i][j] - request[j]
 
 
-# Resource release
-    # User input
-    # RQ p1 1 0 2 (request)
-    # RL p2 3 0 2 (release)
+# Resource release (Tawaty)
 def res_release(i, release):
-    # code here Tawaty
     temp = []
-    for rele, alloc in zip(release, allocation[i]):
-        if rele > alloc:
+    for rel, alloc in zip(release, allocation[i]):
+        if rel > alloc:
             print("Can not Release!")
             return False
         else:
-            temp.append(alloc - rele)
+            temp.append(alloc - rel)
 
     allocation[i] = temp
     return
@@ -94,7 +89,7 @@ def res_release(i, release):
 
 def display_info():
 
-    print("prs     alloc    max    avail   need")
+    print("    alloc    max    avail   need")
     for i in range(0, len(max_demand)):
         print("p" + str(i) + '\t', end='')
 
