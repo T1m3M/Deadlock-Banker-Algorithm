@@ -63,9 +63,9 @@ def res_request(i, request):
         allocation[i][j] = allocation[i][j] + request[j]
 
     if is_safe():
-        print("Successful")
+        print("Request approved!")
     else:
-        print("Unsuccessful")
+        print("Request Denied!")
         # The old resource-allocation state is restored.
         for j in range(3):
             available[j] = available[j] + request[j]
