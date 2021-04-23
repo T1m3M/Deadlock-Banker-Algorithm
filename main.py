@@ -89,7 +89,7 @@ def res_release(i, release):
 
 def display_info():
 
-    print("    alloc    max    avail   need")
+    print("\talloc    max    avail   need")
     for i in range(0, len(max_demand)):
         print("p" + str(i) + '\t', end='')
 
